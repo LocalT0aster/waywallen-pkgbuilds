@@ -14,8 +14,11 @@ assert_help_contains() {
 waywallen_output=$(waywallen --help 2>&1 || true)
 assert_help_contains waywallen "$waywallen_output" 'Usage: waywallen '
 
-# A successful start catches the Qt private-ABI mismatch without depending on Qt's help formatting.
-waywallen-ui --help >/dev/null 2>&1
+# Qt GUI initialization aborts in CI's headless container. Check the relocation that broke after Qt's ABI update instead.
+if readelf --dyn-syms --wide "$(command -v waywallen-ui)" | grep -Fq '_ZN23QUntypedPropertyBindingC1EP23QPropertyBindingPrivate@Qt_6_PRIVATE_API'; then
+  printf 'waywallen-ui references the removed Qt private ABI symbol.\n' >&2
+  exit 1
+fi
 
 layer_shell_output=$(waywallen-layer-shell --help 2>&1 || true)
 assert_help_contains waywallen-layer-shell "$layer_shell_output" 'usage: waywallen-layer-shell '
