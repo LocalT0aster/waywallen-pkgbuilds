@@ -22,7 +22,7 @@ build() {
   cd "open-wallpaper-engine-${pkgver}"
   "${srcdir}/lito-linux-x86_64/bin/lito" install -p owe-waywallen-plugin \
     --prefix "${srcdir}/owe-stage/usr" \
-    --config 'cmake.search-path=["/usr"]'
+    --config 'tools.cmake.search-path=["/usr"]'
 }
 
 package() {
