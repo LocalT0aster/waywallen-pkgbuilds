@@ -27,6 +27,7 @@ while IFS= read -r file; do
       selected[waywallen-display]=1
       ;;
     packages/open-wallpaper-engine/*|upstream/open-wallpaper-engine|upstream/open-wallpaper-engine/*)
+      selected[waywallen]=1
       selected[open-wallpaper-engine]=1
       ;;
     .gitmodules|scripts/*|ci/*|.github/actions/build-test/*|.github/workflows/*)
