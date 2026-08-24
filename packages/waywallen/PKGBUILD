@@ -8,7 +8,7 @@ arch=('x86_64')
 url='https://github.com/waywallen/waywallen'
 license=('MIT')
 depends=('ffmpeg' 'glibc' 'libglvnd' 'libpulse' 'libxkbcommon' 'mesa' 'qt6-base>=6.10' 'qt6-declarative>=6.10' 'qt6-grpc' 'qt6-websockets' 'sqlite' 'vulkan-icd-loader' 'zstd')
-makedepends=('rust' 'clang>=22' 'cmake>=3.28' 'git' 'lld' 'llvm' 'ninja' 'pkgconf' 'protobuf' 'qt6-shadertools' 'vulkan-headers')
+makedepends=('rust' 'clang>=22' 'cmake>=3.28' 'git' 'lld' 'llvm' 'ninja' 'pkgconf' 'protobuf' 'qt6-shadertools' 'qt6-tools' 'vulkan-headers')
 optdepends=('waywallen-display: desktop integration clients')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
         'lito-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.6.1/lito-linux-x86_64.tar.gz')
