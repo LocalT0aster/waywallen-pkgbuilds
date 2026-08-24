@@ -15,6 +15,7 @@ pkgbase = waywallen
 	makedepends = pkgconf
 	makedepends = protobuf
 	makedepends = qt6-shadertools
+	makedepends = qt6-tools
 	makedepends = vulkan-headers
 	depends = ffmpeg
 	depends = glibc
