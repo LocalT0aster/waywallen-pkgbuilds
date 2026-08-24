@@ -1,35 +1,37 @@
 pkgbase = waywallen
 	pkgdesc = Wallpaper manager for Linux
-	pkgver = 0.3.5
-	pkgrel = 2
+	pkgver = 0.3.6
+	pkgrel = 1
 	url = https://github.com/waywallen/waywallen
 	arch = x86_64
 	license = MIT
 	makedepends = rust
-	makedepends = ccache
-	makedepends = clang
-	makedepends = cmake>=4.3.1
+	makedepends = clang>=22
+	makedepends = cmake>=3.28
 	makedepends = git
-	makedepends = git-lfs
 	makedepends = lld
 	makedepends = ninja
 	makedepends = pkgconf
+	makedepends = protobuf
 	makedepends = qt6-shadertools
 	makedepends = vulkan-headers
 	depends = ffmpeg
 	depends = glibc
 	depends = libglvnd
+	depends = libpulse
 	depends = libxkbcommon
 	depends = mesa
-	depends = qt6-base
-	depends = qt6-declarative
+	depends = qt6-base>=6.10
+	depends = qt6-declarative>=6.10
 	depends = qt6-grpc
 	depends = qt6-websockets
 	depends = sqlite
 	depends = vulkan-icd-loader
 	depends = zstd
 	optdepends = waywallen-display: desktop integration clients
-	source = waywallen-0.3.5.tar.gz::https://github.com/waywallen/waywallen/archive/refs/tags/v0.3.5.tar.gz
-	sha256sums = ac253eb1266853979854abf9537c80537b6bdabf96bdefa43f308b6d06fc6f94
+	source = waywallen-0.3.6.tar.gz::https://github.com/waywallen/waywallen/archive/refs/tags/v0.3.6.tar.gz
+	source = lito-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.6.1/lito-linux-x86_64.tar.gz
+	sha256sums = f9c8e5234468c474ad88f0f80a614cc3dcd9f559a5a7acdef3da9ea81e1aa958
+	sha256sums = 2e1247634df8b684913302057d89eb1bdd0b5b1e3112608a9470c8af7c25f4c9
 
 pkgname = waywallen

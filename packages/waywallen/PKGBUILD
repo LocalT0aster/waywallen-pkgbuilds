@@ -1,44 +1,33 @@
 # Maintainer: LocalT0aster <90502400+LocalT0aster@users.noreply.github.com>
 
 pkgname=waywallen
-pkgver=0.3.5
-pkgrel=2
+pkgver=0.3.6
+pkgrel=1
 pkgdesc='Wallpaper manager for Linux'
 arch=('x86_64')
 url='https://github.com/waywallen/waywallen'
 license=('MIT')
-depends=('ffmpeg' 'glibc' 'libglvnd' 'libxkbcommon' 'mesa' 'qt6-base' 'qt6-declarative' 'qt6-grpc' 'qt6-websockets' 'sqlite' 'vulkan-icd-loader' 'zstd')
-makedepends=('rust' 'ccache' 'clang' 'cmake>=4.3.1' 'git' 'git-lfs' 'lld' 'ninja' 'pkgconf' 'qt6-shadertools' 'vulkan-headers')
+depends=('ffmpeg' 'glibc' 'libglvnd' 'libpulse' 'libxkbcommon' 'mesa' 'qt6-base>=6.10' 'qt6-declarative>=6.10' 'qt6-grpc' 'qt6-websockets' 'sqlite' 'vulkan-icd-loader' 'zstd')
+makedepends=('rust' 'clang>=22' 'cmake>=3.28' 'git' 'lld' 'ninja' 'pkgconf' 'protobuf' 'qt6-shadertools' 'vulkan-headers')
 optdepends=('waywallen-display: desktop integration clients')
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('ac253eb1266853979854abf9537c80537b6bdabf96bdefa43f308b6d06fc6f94')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
+        'lito-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.6.1/lito-linux-x86_64.tar.gz')
+sha256sums=('f9c8e5234468c474ad88f0f80a614cc3dcd9f559a5a7acdef3da9ea81e1aa958'
+            '2e1247634df8b684913302057d89eb1bdd0b5b1e3112608a9470c8af7c25f4c9')
 
 build() {
-  # GCC LTO objects and Clang/C++ modules cannot be linked together reliably.
-  export CFLAGS="${CFLAGS//-Wp,-D_FORTIFY_SOURCE=3/}"
-  export CXXFLAGS="${CXXFLAGS//-Wp,-D_FORTIFY_SOURCE=3/}"
-  export CPPFLAGS="${CPPFLAGS//-D_FORTIFY_SOURCE=3/}"
-  export CFLAGS="${CFLAGS//-flto=auto/}"
-  export CXXFLAGS="${CXXFLAGS//-flto=auto/}"
-  export LDFLAGS="${LDFLAGS//-flto=auto/}"
-  export CCACHE_BASEDIR="${srcdir}"
-  export CCACHE_COMPILERCHECK=content
-  cmake -S "${pkgname}-${pkgver}" -B build -G Ninja \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
-    -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-    -DCMAKE_DISABLE_FIND_PACKAGE_qml_material=ON \
-    -DCMAKE_LINKER_TYPE=LLD
-  # FFmpeg 8 widened AVVkFrame::access from uint32_t to uint64_t.
-  sed -i '/static_assert(sizeof(static_cast<AVVkFrame.*access\[0\])/d' \
-    build/_deps/wavsen-src/src/video/video_decoder.cpp
-  cmake --build build
+  export CC=clang
+  export CXX=clang++
+  cd "${pkgname}-${pkgver}"
+  "${srcdir}/lito-linux-x86_64/bin/lito" install \
+    --no-config \
+    --locked \
+    --profile release \
+    --prefix "${srcdir}/waywallen-stage/usr" \
+    --config 'tools.cmake.search-path=["/usr"]'
 }
 
 package() {
-  DESTDIR="${pkgdir}" cmake --install build
+  cp -a "${srcdir}/waywallen-stage/." "${pkgdir}/"
   install -Dm644 "${pkgname}-${pkgver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
