@@ -10,6 +10,7 @@ pkgbase = waywallen
 	makedepends = cmake>=3.28
 	makedepends = git
 	makedepends = lld
+	makedepends = llvm
 	makedepends = ninja
 	makedepends = pkgconf
 	makedepends = protobuf
