@@ -14,8 +14,8 @@ assert_help_contains() {
 waywallen_output=$(waywallen --help 2>&1 || true)
 assert_help_contains waywallen "$waywallen_output" 'Usage: waywallen '
 
-ui_output=$(waywallen-ui --help 2>&1 || true)
-assert_help_contains waywallen-ui "$ui_output" '--ws-port <port>'
+# A successful start catches the Qt private-ABI mismatch without depending on Qt's help formatting.
+waywallen-ui --help >/dev/null 2>&1
 
 layer_shell_output=$(waywallen-layer-shell --help 2>&1 || true)
 assert_help_contains waywallen-layer-shell "$layer_shell_output" 'usage: waywallen-layer-shell '
