@@ -27,6 +27,6 @@ build() {
 
 package() {
   cp -a "${srcdir}/owe-stage/." "${pkgdir}/"
-  patchelf --set-rpath '$ORIGIN' "${pkgdir}/usr/bin/weweb/waywallen-weweb-renderer"
+  patchelf --set-rpath '$ORIGIN' "${pkgdir}/usr/lib/weweb/waywallen-weweb-renderer"
   install -Dm644 "open-wallpaper-engine-${pkgver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
