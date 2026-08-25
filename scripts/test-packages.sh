@@ -20,5 +20,7 @@ if readelf --dyn-syms --wide "$(command -v waywallen-ui)" | grep -Fq '_ZN23QUnty
   exit 1
 fi
 
-layer_shell_output=$(waywallen-layer-shell --help 2>&1 || true)
-assert_help_contains waywallen-layer-shell "$layer_shell_output" 'usage: waywallen-layer-shell '
+if [[ " ${BUILD_PACKAGES:-waywallen waywallen-display open-wallpaper-engine} " == *' waywallen-display '* ]]; then
+  layer_shell_output=$(waywallen-layer-shell --help 2>&1 || true)
+  assert_help_contains waywallen-layer-shell "$layer_shell_output" 'usage: waywallen-layer-shell '
+fi
