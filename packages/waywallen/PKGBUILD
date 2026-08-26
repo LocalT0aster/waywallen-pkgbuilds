@@ -1,7 +1,7 @@
 # Maintainer: LocalT0aster <90502400+LocalT0aster@users.noreply.github.com>
 
 pkgname=waywallen
-pkgver=0.3.6
+pkgver=0.3.7
 pkgrel=1
 pkgdesc='Wallpaper manager for Linux'
 arch=('x86_64')
@@ -12,7 +12,7 @@ makedepends=('rust' 'clang>=22' 'cmake>=3.28' 'git' 'lld' 'llvm' 'ninja' 'pkgcon
 optdepends=('waywallen-display: desktop integration clients')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
         'lito-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.6.1/lito-linux-x86_64.tar.gz')
-sha256sums=('f9c8e5234468c474ad88f0f80a614cc3dcd9f559a5a7acdef3da9ea81e1aa958'
+sha256sums=('de2cb3698c2f1eb4c90053cf4c72c14f8bcfb935283b335c81e1742466fbf1db'
             '2e1247634df8b684913302057d89eb1bdd0b5b1e3112608a9470c8af7c25f4c9')
 
 build() {
