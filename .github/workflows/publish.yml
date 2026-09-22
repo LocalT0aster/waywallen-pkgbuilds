@@ -4,6 +4,16 @@ on:
   workflow_run:
     workflows: [Validate packages]
     types: [completed]
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Run that uploaded the validated-packages artifact.
+        required: true
+        type: string
+      head_sha:
+        description: Validated commit to publish.
+        required: true
+        type: string
 
 permissions:
   actions: write
@@ -11,13 +21,13 @@ permissions:
 
 jobs:
   publish:
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-26.04
     container: archlinux:base-devel
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          ref: ${{ github.event.workflow_run.head_sha || inputs.head_sha }}
       - run: pacman -Sy --noconfirm
       - run: pacman -S --noconfirm --needed git github-cli
       - name: Download current repository packages
@@ -33,7 +43,7 @@ jobs:
         with:
           name: validated-packages
           path: new-packages
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: ${{ github.event.workflow_run.id || inputs.source_run_id }}
           github-token: ${{ github.token }}
       - name: Merge validated packages
         run: |
@@ -72,6 +82,7 @@ jobs:
       - name: Delete consumed validation artifact
         env:
           GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ github.event.workflow_run.id || inputs.source_run_id }}
         run: |
-          artifact_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/${{ github.event.workflow_run.id }}/artifacts" --jq '.artifacts[] | select(.name == "validated-packages") | .id')
+          artifact_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID/artifacts" --jq '.artifacts[] | select(.name == "validated-packages") | .id')
           gh api --method DELETE "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact_id"
