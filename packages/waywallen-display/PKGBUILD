@@ -1,7 +1,7 @@
 # Maintainer: LocalT0aster <90502400+LocalT0aster@users.noreply.github.com>
 
 pkgname=waywallen-display
-pkgver=0.3.3
+pkgver=0.4.0
 pkgrel=1
 pkgdesc='Desktop integration for waywallen'
 arch=('x86_64')
@@ -13,7 +13,7 @@ optdepends=('qt6-declarative: KDE Plasma integration' 'gtk4: GNOME Shell integra
 conflicts=('plasma-wallpaper-waywallen')
 replaces=('plasma-wallpaper-waywallen')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('c63b65157347011373b2a9a6649cbe77a08e24e768d5420c0308b447142bbbb9')
+sha256sums=('191e8a8f575288d25e1e4f9999c74dfd4bfa81404f42eabbe069c761e45f3607')
 
 build() {
   export CFLAGS="${CFLAGS//-Wp,-D_FORTIFY_SOURCE=3/}"
