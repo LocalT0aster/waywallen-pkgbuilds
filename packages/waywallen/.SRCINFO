@@ -1,6 +1,6 @@
 pkgbase = waywallen
 	pkgdesc = Wallpaper manager for Linux
-	pkgver = 0.4.1
+	pkgver = 0.4.3
 	pkgrel = 1
 	url = https://github.com/waywallen/waywallen
 	arch = x86_64
@@ -31,9 +31,9 @@ pkgbase = waywallen
 	depends = vulkan-icd-loader
 	depends = zstd
 	optdepends = waywallen-display: desktop integration clients
-	source = waywallen-0.4.1.tar.gz::https://github.com/waywallen/waywallen/archive/refs/tags/v0.4.1.tar.gz
+	source = waywallen-0.4.3.tar.gz::https://github.com/waywallen/waywallen/archive/refs/tags/v0.4.3.tar.gz
 	source = lito-v0.8.4-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.4/lito-v0.8.4-linux-x86_64.tar.gz
-	sha256sums = 48de9e9ab05d77c377ae4a319a03ca3be56060f662d289ad8f0e34eb67b27601
+	sha256sums = 533c1ce0d0cd07a83a06fa0af61cae1cc69a5dba0afea0d94b69345326baa3b6
 	sha256sums = 9172b87a8bfc78aa508c2ca85a1f4b95b7c8d669bc4d94ee0dad3e1b9b1d9448
 
 pkgname = waywallen
