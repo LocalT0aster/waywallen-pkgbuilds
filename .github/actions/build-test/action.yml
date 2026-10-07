@@ -19,7 +19,7 @@ runs:
   steps:
     - name: Install build tools
       shell: bash
-      run: pacman -Sy --noconfirm && pacman -S --noconfirm --needed git sudo
+      run: pacman -Syu --noconfirm && pacman -S --noconfirm --needed git sudo
     - name: Recreate Git checkout
       if: inputs.checkout == 'true'
       shell: bash
