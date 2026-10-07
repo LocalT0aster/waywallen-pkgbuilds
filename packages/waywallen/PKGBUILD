@@ -1,7 +1,7 @@
 # Maintainer: LocalT0aster <90502400+LocalT0aster@users.noreply.github.com>
 
 pkgname=waywallen
-pkgver=0.4.3
+pkgver=0.4.4
 pkgrel=1
 pkgdesc='Wallpaper manager for Linux'
 arch=('x86_64')
@@ -11,15 +11,15 @@ depends=('ffmpeg' 'glibc' 'libglvnd' 'libpulse' 'libxkbcommon' 'mesa' 'qt6-base>
 makedepends=('rust' 'clang>=22' 'cmake>=3.28' 'git' 'lld' 'llvm' 'ninja' 'pkgconf' 'protobuf' 'qt6-shadertools' 'qt6-tools' 'vulkan-headers')
 optdepends=('waywallen-display: desktop integration clients')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
-         'lito-v0.8.4-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.4/lito-v0.8.4-linux-x86_64.tar.gz')
-sha256sums=('533c1ce0d0cd07a83a06fa0af61cae1cc69a5dba0afea0d94b69345326baa3b6'
-            '9172b87a8bfc78aa508c2ca85a1f4b95b7c8d669bc4d94ee0dad3e1b9b1d9448')
+         'lito-v0.8.5-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.5/lito-v0.8.5-linux-x86_64.tar.gz')
+sha256sums=('e3eae24e7b9946109a7fbc25906f663e4a580793d9c23df763b68c3234d97535'
+            '1612163dedfff9b2b1d2daf786069730461e999926d3135c756f12d2e3dc6b3d')
 
 build() {
   export CC=clang
   export CXX=clang++
   cd "${pkgname}-${pkgver}"
-  "${srcdir}/lito-v0.8.4-linux-x86_64/bin/lito" install \
+  "${srcdir}/lito-v0.8.5-linux-x86_64/bin/lito" install \
     --no-config \
     --locked \
     --profile release \
