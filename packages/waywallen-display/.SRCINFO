@@ -1,6 +1,6 @@
 pkgbase = waywallen-display
 	pkgdesc = Desktop integration for waywallen
-	pkgver = 0.4.0
+	pkgver = 0.4.1
 	pkgrel = 1
 	url = https://github.com/waywallen/waywallen-display
 	arch = x86_64
@@ -25,7 +25,7 @@ pkgbase = waywallen-display
 	optdepends = gtk4: GNOME Shell integration
 	conflicts = plasma-wallpaper-waywallen
 	replaces = plasma-wallpaper-waywallen
-	source = waywallen-display-0.4.0.tar.gz::https://github.com/waywallen/waywallen-display/archive/refs/tags/v0.4.0.tar.gz
-	sha256sums = 191e8a8f575288d25e1e4f9999c74dfd4bfa81404f42eabbe069c761e45f3607
+	source = waywallen-display-0.4.1.tar.gz::https://github.com/waywallen/waywallen-display/archive/refs/tags/v0.4.1.tar.gz
+	sha256sums = f3fa18cfe549a626c38fb70ade0417ec4f32f0a617668d61b2a001db6261072e
 
 pkgname = waywallen-display
