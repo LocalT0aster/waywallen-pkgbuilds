@@ -1,0 +1,15 @@
+--- a/ui/qml/component/PagePopup.qml
++++ b/ui/qml/component/PagePopup.qml
+@@ -257,8 +257,10 @@ MD.Popup {
+     contentItem: MD.PageStack {
+         id: m_stack
+         property Item outgoingItem: null
+-        implicitWidth: Math.max(outgoingItem?.implicitWidth ?? 0, currentItem?.implicitWidth ?? 0)
+-        implicitHeight: Math.max(outgoingItem?.implicitHeight ?? 0, currentItem?.implicitHeight ?? 0)
++        // Child pages derive content width from their parent. Feeding their
++        // implicit size back into this popup creates a QML binding loop.
++        implicitWidth: 480
++        implicitHeight: 640
+ 
+         onBusyChanged: {
+             if (!busy)
