@@ -1,7 +1,7 @@
 pkgbase = waywallen
 	pkgdesc = Wallpaper manager for Linux
 	pkgver = 0.5.0
-	pkgrel = 3
+	pkgrel = 4
 	url = https://github.com/waywallen/waywallen
 	arch = x86_64
 	license = MIT
