@@ -29,6 +29,32 @@ Add this repository to `/etc/pacman.conf`:
 Server = https://github.com/LocalT0aster/waywallen-pkgbuilds/releases/download/pacman-repository
 ```
 
+## Downgrade
+
+The repository keeps a rolling window of the newest three package versions
+(older `pkgbuild` rebuilds of the same version are discarded). A pacman
+repository tracks one version per package by design, so the archive versions
+are reachable only through the release assets:
+
+- List what is kept:
+  `https://github.com/LocalT0aster/waywallen-pkgbuilds/releases/tag/pacman-repository`
+- Install an archived version directly:
+
+  ```sh
+  sudo pacman -U 'https://github.com/LocalT0aster/waywallen-pkgbuilds/releases/download/pacman-repository/waywallen-0.4.4-3-x86_64.pkg.tar.zst'
+  ```
+
+- Run the [`downgrade`](https://github.com/archlinux-downgrade/downgrade) picker
+  against a temporary cache mirror of the release:
+
+  ```sh
+  gh release download pacman-repository -R LocalT0aster/waywallen-pkgbuilds -D /tmp/ww-cache
+  downgrade --pacman-cache /tmp/ww-cache waywallen
+  ```
+
+Local groups: rollback sets stay self-consistent — packages from one release
+cohort are built, signed, and tested against each other.
+
 ## Local maintenance
 
 ```sh
