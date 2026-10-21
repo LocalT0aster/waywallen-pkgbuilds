@@ -57,6 +57,8 @@ jobs:
             done
             install -Dm644 "$package" dist/x86_64/"${package##*/}"
           done
+      - name: Prune retained package versions
+        run: ./scripts/prune-packages.sh dist/x86_64
       - name: Import package signing key
         env:
           PACKAGER_GPG_PRIVATE_KEY: ${{ secrets.PACKAGER_GPG_PRIVATE_KEY }}
@@ -79,6 +81,15 @@ jobs:
             gh release create pacman-repository --repo "$GITHUB_REPOSITORY" --title 'Waywallen pacman repository' --notes 'Rolling signed pacman repository.' --latest=false
           gh release upload pacman-repository dist/x86_64/*.pkg.tar.zst dist/x86_64/*.pkg.tar.zst.sig --clobber --repo "$GITHUB_REPOSITORY"
           gh release upload pacman-repository dist/x86_64/waywallen.db dist/x86_64/waywallen.db.sig dist/x86_64/waywallen.db.tar.zst dist/x86_64/waywallen.db.tar.zst.sig --clobber --repo "$GITHUB_REPOSITORY"
+          # Pruned packages must also leave the release; --clobber never deletes.
+          comm -23 \
+            <(gh release view pacman-repository --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets[].name' | sort -u) \
+            <(find dist/x86_64 -maxdepth 1 -type l -o -type f | xargs -n1 basename | sort -u) \
+            | while read -r asset; do
+                case "$asset" in
+                  *.pkg.tar.zst|*.pkg.tar.zst.sig) gh release delete-asset pacman-repository "$asset" --yes --repo "$GITHUB_REPOSITORY";;
+                esac
+              done
       - name: Delete consumed validation artifact
         env:
           GH_TOKEN: ${{ github.token }}
