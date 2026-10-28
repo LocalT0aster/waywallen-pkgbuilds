@@ -47,14 +47,10 @@ jobs:
           github-token: ${{ github.token }}
       - name: Merge validated packages
         run: |
+          # install(1) overwrites an identical filename in place. Do not remove
+          # other versions by package name: the retained rollback window is
+          # curated by prune-packages.sh below, not by the merge.
           for package in new-packages/*.pkg.tar.zst; do
-            set -- $(pacman -Qp "$package")
-            name=$1
-            for existing in dist/x86_64/*.pkg.tar.zst; do
-              [[ -e $existing ]] || continue
-              set -- $(pacman -Qp "$existing")
-              [[ $1 == "$name" ]] && rm "$existing"
-            done
             install -Dm644 "$package" dist/x86_64/"${package##*/}"
           done
       - name: Prune retained package versions
