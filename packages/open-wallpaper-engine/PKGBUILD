@@ -1,7 +1,7 @@
 # Maintainer: LocalT0aster <90502400+LocalT0aster@users.noreply.github.com>
 
 pkgname=waywallen-open-wallpaper-engine
-pkgver=0.3.1
+pkgver=0.3.2
 pkgrel=1
 pkgdesc='Wallpaper Engine renderer plugin for waywallen'
 arch=('x86_64')
@@ -11,7 +11,7 @@ depends=('alsa-lib' 'ffmpeg' 'fontconfig' 'freetype2' 'glibc' 'gtk3' 'libglvnd' 
 makedepends=('ccache' 'clang>=22' 'cmake>=4.0' 'eigen' 'git' 'glslang' 'lld' 'llvm' 'nasm' 'ninja' 'patchelf' 'pkgconf' 'vulkan-headers')
 source=("open-wallpaper-engine-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
         'lito-v0.8.7-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.7/lito-v0.8.7-linux-x86_64.tar.gz')
-sha256sums=('40436769f723abdd127ee64ce56ad742ee748fc13be4a6e42c6a54bad896d5d1'
+sha256sums=('b7b9e4c7d9f944f671f5570f5ff89ea003da53e41324dbae901b27621505f646'
             '362fdf8212f2aa09f52761b921e9b40bfe740b309369f0cd4994b79761deb77c')
 
 build() {
