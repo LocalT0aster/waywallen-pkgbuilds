@@ -19,7 +19,10 @@ sha256sums=('f9a9d76a84f5d3dadd5ddedb10a738f7cd094e6162f744696cdebb9ecdec0108'
 
 prepare() {
   cd "${pkgname}-${pkgver}"
-  patch -Np1 -i "${srcdir}/page-popup-fixed-size.patch"
+  # v0.6.0 rewrote popup sizing and no longer has the affected bindings.
+  if (( $(vercmp "$pkgver" 0.6.0) < 0 )); then
+    patch -Np1 -i "${srcdir}/page-popup-fixed-size.patch"
+  fi
 }
 
 build() {
