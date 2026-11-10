@@ -1,7 +1,7 @@
 # Maintainer: LocalT0aster <90502400+LocalT0aster@users.noreply.github.com>
 
 pkgname=waywallen
-pkgver=0.5.0
+pkgver=0.6.0
 pkgrel=4
 pkgdesc='Wallpaper manager for Linux'
 arch=('x86_64')
@@ -13,7 +13,7 @@ optdepends=('waywallen-display: desktop integration clients')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
           'lito-v0.8.7-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.7/lito-v0.8.7-linux-x86_64.tar.gz'
           'page-popup-fixed-size.patch')
-sha256sums=('f9a9d76a84f5d3dadd5ddedb10a738f7cd094e6162f744696cdebb9ecdec0108'
+sha256sums=('2c27e42cd0e5715cb9d285dcaa4b890359bd99a9c091b7d774d476c0ce1db44d'
             '362fdf8212f2aa09f52761b921e9b40bfe740b309369f0cd4994b79761deb77c'
             '9ce2828eddfe9feab78cbdfe6a2622d9799ab7424a220e8e2f412332558344bf')
 
