@@ -2,7 +2,7 @@
 
 pkgname=waywallen-open-wallpaper-engine
 pkgver=0.3.3
-pkgrel=1
+pkgrel=2
 pkgdesc='Wallpaper Engine renderer plugin for waywallen'
 arch=('x86_64')
 url='https://github.com/waywallen/open-wallpaper-engine'
@@ -10,9 +10,9 @@ license=('GPL-2.0-only')
 depends=('alsa-lib' 'ffmpeg' 'fontconfig' 'freetype2' 'glibc' 'gtk3' 'libglvnd' 'libx11' 'libxcomposite' 'libxdamage' 'libxext' 'libxfixes' 'libxkbcommon' 'libxrandr' 'libxrender' 'libxss' 'libxcb' 'lz4' 'mesa' 'nss' 'vulkan-icd-loader' 'wayland' 'waywallen>=0.3.6')
 makedepends=('ccache' 'clang>=22' 'cmake>=4.0' 'eigen' 'git' 'glslang' 'lld' 'llvm' 'nasm' 'ninja' 'patchelf' 'pkgconf' 'vulkan-headers')
 source=("open-wallpaper-engine-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz"
-        'lito-v0.8.7-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.7/lito-v0.8.7-linux-x86_64.tar.gz')
+        'lito-v0.8.9-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.9/lito-v0.8.9-linux-x86_64.tar.gz')
 sha256sums=('543ae3d387fa18fec43ab73791f6254e0484ee693ce3738afbbe1ccb8993c913'
-            '362fdf8212f2aa09f52761b921e9b40bfe740b309369f0cd4994b79761deb77c')
+            '31884c0e853f644f4491bf3a58ee93a12d5513a9810cdeb0e00136cb87dbe610')
 
 build() {
   export CC=clang
@@ -20,7 +20,7 @@ build() {
   export CCACHE_BASEDIR="${srcdir}"
   export CCACHE_COMPILERCHECK=content
   cd "open-wallpaper-engine-${pkgver}"
-  "${srcdir}/lito-v0.8.7-linux-x86_64/bin/lito" install -p owe-waywallen-plugin \
+  "${srcdir}/lito-v0.8.9-linux-x86_64/bin/lito" install -p owe-waywallen-plugin \
     --prefix "${srcdir}/owe-stage/usr" \
     --config 'tools.cmake.search-path=["/usr"]'
 }
