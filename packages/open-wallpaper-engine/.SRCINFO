@@ -1,6 +1,6 @@
 pkgbase = waywallen-open-wallpaper-engine
 	pkgdesc = Wallpaper Engine renderer plugin for waywallen
-	pkgver = 0.3.4
+	pkgver = 0.4.1
 	pkgrel = 2
 	url = https://github.com/waywallen/open-wallpaper-engine
 	arch = x86_64
@@ -38,12 +38,13 @@ pkgbase = waywallen-open-wallpaper-engine
 	depends = lz4
 	depends = mesa
 	depends = nss
+	depends = openal
 	depends = vulkan-icd-loader
 	depends = wayland
 	depends = waywallen>=0.3.6
-	source = open-wallpaper-engine-0.3.4.tar.gz::https://github.com/waywallen/open-wallpaper-engine/archive/refs/tags/v0.3.4.tar.gz
-	source = lito-v0.8.9-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.9/lito-v0.8.9-linux-x86_64.tar.gz
-	sha256sums = 3561a5104e405133749e7017fa890bae899220f73828364655227792dea9e3db
-	sha256sums = 31884c0e853f644f4491bf3a58ee93a12d5513a9810cdeb0e00136cb87dbe610
+	source = open-wallpaper-engine-0.4.1.tar.gz::https://github.com/waywallen/open-wallpaper-engine/archive/refs/tags/v0.4.1.tar.gz
+	source = lito-v0.8.13-linux-x86_64.tar.gz::https://github.com/litocpp/lito/releases/download/v0.8.13/lito-v0.8.13-linux-x86_64.tar.gz
+	sha256sums = 06a148a4312080b066afa98562f434a228657cfa9c440778df2b85817072e32e
+	sha256sums = 055399f009c95977e6727cce0b0f918bb3fbf51c9f806b5064ece459a31bfc4f
 
 pkgname = waywallen-open-wallpaper-engine
